@@ -20,7 +20,7 @@ int main(){
         }
     }
     for (auto elem : ans) {
-        cout << elem << endl;
+        cout<< elem << endl;
     }
 
 }
