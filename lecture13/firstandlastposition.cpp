@@ -22,7 +22,7 @@ vector<int> searchRange(vector<int> &arr, int x)
     return sol;
 }
 int main(){
-    vector<int> arr={1,2,3,4,2,6,3};
+    vector<int> arr={1,2,3,4,3,3,3};
     int x;
     cout<<"Enter the value of x: "<<endl;
     cin>>x;
