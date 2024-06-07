@@ -14,8 +14,8 @@ void SelectionSort(vector<int> arr, int size){
 }
 void printArray(vector<int> arr,int size){
     cout<<"Sorted array is: "<<endl;
-    for(int t=0;t<size;t++){
-        cout<<arr[t];
+    for(int i=0;i<size;i++){
+        cout<<arr[i];
     }
 }
 int main(){
@@ -24,8 +24,8 @@ int main(){
     cout<<"Enter the size of vector "<<endl;
     cin>>size;
     cout<<"Enter elements in the vector: "<<endl;
-    for(int k=0;k<size;k++){
-        cin>>arr[k];
+    for(int i=0;i<size;i++){
+        cin>>arr[i];
     }
    SelectionSort(arr,size);
    printArray(arr,size);
