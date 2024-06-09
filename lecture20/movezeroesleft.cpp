@@ -2,11 +2,11 @@
 #include<vector>
 using namespace std;
 vector<int> movezeroes(vector<int> arr){
-    int i=0;
-    for(int j=0;j<arr.size();j++){
+    int i=arr.size();
+    for(int j=arr.size();j>0;j--){
         if(arr[j]!=0){
             swap(arr[i],arr[j]);
-            i++;
+            i--;
         }
     }
     return arr;
