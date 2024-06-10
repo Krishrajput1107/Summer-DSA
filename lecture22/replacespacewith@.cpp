@@ -20,4 +20,5 @@ int main(){
     cin>>s;
     getline(cin,s);
     replacefun(s);
+    return 0;
 }
