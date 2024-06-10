@@ -1,9 +1,9 @@
 #include<iostream>
-#include<vector>
 #include<string>
 using namespace std;
+
 void replacefun(string s){
-    string ans="";
+    string ans = "";
     for(int i=0;i<s.size();i++){
         if(s[i] != ' '){
             ans+=s[i];
@@ -12,7 +12,7 @@ void replacefun(string s){
             ans+="@40";
         }
     }
-    cout<<ans;
+    cout<<ans<<endl;
 }
 int main(){
     string s;
