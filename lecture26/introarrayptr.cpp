@@ -10,4 +10,7 @@ int main(){
     cout<<"5th: "<<*arr+1<<endl;
     cout<<"value at first location: "<<*(arr+1)<<endl;
     cout<<"7th: "<<(*arr)+1<<endl;
+    cout<<"8th: "<<arr[2]<<endl;
+    cout<<"9th: "<<*(arr+2)<<endl;
+
 }
