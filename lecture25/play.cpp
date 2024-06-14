@@ -5,7 +5,9 @@ int main(){
     //int *ptr=0;
     //cout<< *ptr <<endl;
     int i=5;
-    //int *p=&i;
+    int *q=&i;
+    cout<<"Address is: "<<q<<endl;
+    cout<<"Value is: "<<*q<<endl;
     int *p=0;
     p=&i;
     cout<<"Address is: "<<p<<endl;
