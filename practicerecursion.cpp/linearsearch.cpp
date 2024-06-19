@@ -1,7 +1,15 @@
 #include<iostream>
 using namespace std;
+void print(int arr[], int size){
+    cout<<endl;
+    cout<<"Size of array is: "<<size<<endl;
+    for(int i=0;i<size;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
 bool linearSearch(int arr[],int size,int key){
-    cout<<arr[0]<<endl;
+    print(arr,size);
     if(size==0){
         return false;
     }
