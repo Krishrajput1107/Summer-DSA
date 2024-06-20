@@ -14,3 +14,4 @@ int main(){
     cin>>n;
     Count(n);
 }
+//done
