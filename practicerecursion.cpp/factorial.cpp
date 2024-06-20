@@ -14,3 +14,4 @@ int main(){
     int ans=factorial(n);
     cout<<"Factorial of "<<n<<" is "<<ans<<endl;
 }
+//done
