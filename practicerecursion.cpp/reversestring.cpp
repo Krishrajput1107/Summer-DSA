@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 void reverse(string &s,int i,int j){
+    cout<<"call received for "<<s<<endl;
     if(i>j){
         return;
     }
@@ -15,6 +16,8 @@ int main(){
     cin>>s;
     int i=0;
     int j=s.size()-1;
-    reverse(s,i,j); 
+    cout<<endl;
+    reverse(s,i,j);
+    cout<<endl; 
     cout<< s <<endl;  
 }
