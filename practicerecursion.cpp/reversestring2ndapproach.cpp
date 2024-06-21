@@ -1,24 +1,19 @@
 #include<iostream>
 using namespace std;
-string reverseHelper(string &s,int i){
+void reverse(string &s,int i){
     if(i<0){
-        return "";
+        return;
     }
-    i--;
-    return s[i]+reverseHelper(s,i);
-}
-
-string reverseString(string &s) {
-    return reverseHelper(s, s.size() - 1);
+    return reverse(s,i--);
 }
 int main(){
-    string s;
+    string s,str="";
+    int j=0;
     cout<<"Enter string: "<<endl;
     cin>>s;
     int i=s.size()-1;
     cout<<endl;
-    string sol=reverseString(s);
-    cout<<endl; 
-    cout<<sol;
+    reverse(s,i);
+    cout<<s;
      
 }
