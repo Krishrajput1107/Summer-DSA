@@ -1,22 +1,20 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-string reverse(string &s,int i,vector<string> &str){
-    if(i<0){
-        return "";
+void reverse(string &s,int i){
+    if(i>s.length()){
+        return;
     }
-    str=str.push_back(s[i]);
-    reverse(s,i--,str);
-    return str;
+    swap(s[i],s[s.length()-i-1]);
+    i++;
+    reverse(s,i);
 }
 int main(){
     string s;
-    vector<string> str;
-    int j=0;
     cout<<"Enter string: "<<endl;
     cin>>s;
-    int i=s.length()-1;
-    vector<string>str sol=reverse(s,i,str);
-    cout<<sol;
+    int i=0;
+    reverse(s,i);
+    cout<<s;
      
 }
