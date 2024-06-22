@@ -67,7 +67,7 @@ int main(){
     int s=0;
     int e=size-1;
     mergeSort(arr,s,e);   
-    for(int i=0;i<e;i++){
+    for(int i=0;i<size;i++){
         cout<<arr[i]<<" ";
     }
     cout<<endl;
