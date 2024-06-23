@@ -24,3 +24,13 @@ vector<string> subsequences(string str){
     return ans;
 	
 }
+ int main(){
+        string s;
+        cout<<"Enter string: "<<endl;
+        cin>>s;
+        vector<string> ans=subsequences(s);
+        for(int i=0;i<ans.size();i++){
+            cout<<ans[i]<<" ";
+        }
+        cout<<endl;
+    }
