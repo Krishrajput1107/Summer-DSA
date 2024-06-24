@@ -3,7 +3,7 @@ using namespace std;
 
 void selectionSort(int arr[], int size, int start = 0) {
     // Base case
-    if (start >= size - 1) {
+    if (start > size ) {
         return;
     }
 
