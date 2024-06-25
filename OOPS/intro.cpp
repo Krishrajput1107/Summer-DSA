@@ -5,6 +5,7 @@ class Hero{
     int health;
 };
 int main(){
+    //creation of object
     Hero h1;
     cout<<"Size: "<<sizeof(h1)<<endl;
 }
