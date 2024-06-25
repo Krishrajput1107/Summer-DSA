@@ -5,7 +5,7 @@ class Hero{
     private:
     int health=50;
     public:
-    char level;
+    char level='A';
     void print(){
         cout<<level;
     }
@@ -31,7 +31,7 @@ int main(){
     cout<<"Health is: "<<baaki.gethealth()<<endl;
     //cout<<"Health is: "<<baaki.sethealth(5)<<endl;
     //baaki.health=60;
-    baaki.level='A';
+    baaki.level;
     cout<<"Size: "<<sizeof(baaki)<<endl;
     //cout<<"Health: "<<baaki.health<<endl;
     cout<<"level: "<<baaki.level<<endl;
