@@ -5,7 +5,7 @@ class Hero{
     private:
     int health=50;
     public:
-    char level='A';
+    char level='d';
     void print(){
         cout<<level;
     }
@@ -26,4 +26,6 @@ class Hero{
 int main(){
     //static allocation
     Hero a;
+    char level='B';
+    cout<<a.health;
 }
