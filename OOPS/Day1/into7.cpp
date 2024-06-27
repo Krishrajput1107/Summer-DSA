@@ -5,7 +5,7 @@ class Hero{
     int health;
     public:
     char level='Z';
-    int timetoComplete;
+    static int timetoComplete;
     Hero(){
         cout<<"Mae default constructor hu"<<endl;
     }
@@ -37,9 +37,11 @@ class Hero{
     ~Hero(){
         cout<<"Distructor called "<<endl;
     }
-
 };
+
+int Hero::timetoComplete=5;
+
 int main(){
-    
+    cout<< Hero::timetoComplete <<endl;
 
 }
