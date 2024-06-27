@@ -2,7 +2,7 @@
 using namespace std;
 class Human{
     public:
-    int heigjt;
+    int height;
     int weight;
     int age;
     public:
@@ -23,4 +23,7 @@ class Male : public Human{
 int main(){
     Male obj1;
     cout<< obj1.age<< endl;
+    cout<< obj1.height<< endl;
+    cout<< obj1.weight<< endl;
+    cout<< obj1.colour<< endl;
 }
