@@ -22,6 +22,9 @@ class Hero{
     void print(){
         cout<<level<<endl;
     }
+    static int random(){
+        cout<< timetoComplete <<endl;
+    }
     int gethealth(){
         return health;
     }
@@ -43,5 +46,6 @@ int Hero::timetoComplete=5;
 
 int main(){
     cout<< Hero::timetoComplete <<endl;
+    Hero::random();
 
 }
