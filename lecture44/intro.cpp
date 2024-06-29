@@ -10,6 +10,17 @@ class Node{
         this->data=data;
         this->next=NULL;
     }
+
+    //distructor
+    ~Node(){
+        int value=this->data;
+        //MEMORY FREE
+        if(this->next!=NULL){
+            delete next;
+            this->next=NULL;
+        }
+        cout<<"memory is free for node with data "<<value<<endl;
+    }
 };
 void InsertatHead(Node* &head,int d){
     Node *temp=new Node(d);
@@ -55,6 +66,31 @@ void InsertAtposition(Node* &tail,Node * &head,int position,int d){
     temp->next=nodetoInsert;
 }
 
+void deleteNode(int position, Node* &head){
+    //delteing first node
+    if(position==1){
+        Node *temp=head;
+        head=head->next;
+        //memory free krdo
+        temp->next=NULL;
+        delete temp;
+    }
+    //deleting any mid or last node
+    else{
+        Node *current=head;
+        Node *prev=NULL;
+        int cnt=1;
+        while(cnt<position){
+            prev=current;
+            current=current->next;
+            cnt++;
+        }
+        prev->next=current->next;
+        current->next=NULL;
+        delete current;
+    }
+}
+
 
 int main(){
     //created a new node
@@ -73,6 +109,12 @@ int main(){
     print(head);
 
     InsertAtposition(tail,head,4,20);
+    print(head);
+
+    //cout<<head->data<<" ";
+    //cout<<tail->data<<" ";
+
+    deleteNode(3,head);
     print(head);
 
 
