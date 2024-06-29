@@ -31,6 +31,30 @@ void print(Node* &head){
     }
     cout<<endl;
 }
+void InsertAtposition(Node* &tail,Node * &head,int position,int d){
+    //insert at startposition
+    if(position==1){
+        InsertatHead(head,d);
+        return;
+    }
+    int cnt=1;
+    Node *temp=head;
+    while(cnt<position-1){
+        temp=temp->next;
+        cnt++;
+    }
+    //Insert at last position
+    if(temp->next==NULL){
+        InsertatTail(tail,d);
+        return;
+    }
+
+    //Insert at any position
+    Node *nodetoInsert=new Node(d);
+    nodetoInsert->next=temp->next;
+    temp->next=nodetoInsert;
+}
+
 
 int main(){
     //created a new node
@@ -46,6 +70,9 @@ int main(){
     print(head);
 
     InsertatTail(tail,15);
+    print(head);
+
+    InsertAtposition(tail,head,4,20);
     print(head);
 
 
