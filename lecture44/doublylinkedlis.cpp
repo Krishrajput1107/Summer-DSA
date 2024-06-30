@@ -31,10 +31,11 @@ int getLength(Node* &head){
     }
     return len;
 }
-void insertatHead(Node* &head,int data){
+void insertatHead(Node* &head,Node* &tail,int data){
     if(head==NULL){
         Node *temp=new Node(data);
         head=temp;
+        tail=temp;
     }
     else{
         Node *temp=new Node(data);
@@ -43,10 +44,11 @@ void insertatHead(Node* &head,int data){
         head=temp;
     }
 }
-void insertatTail(Node* &tail,int data){
+void insertatTail(Node* &head,Node* &tail,int data){
     if(tail==NULL){
         Node *temp=new Node(data);
         tail=temp;
+        head=temp;
     }
     else{
         Node *temp=new Node(data);
@@ -57,7 +59,7 @@ void insertatTail(Node* &tail,int data){
 }
 void insertatPosition(Node*&tail, Node* &head,int position,int data){
     if(position==1){
-        insertatHead(head,data);
+        insertatHead(head,tail,data);
         return;
     }
     int cnt=1;
@@ -68,7 +70,7 @@ void insertatPosition(Node*&tail, Node* &head,int position,int data){
     }
     //Insert at last position
     if(temp->next==NULL){
-        insertatTail(tail,data);
+        insertatTail(head,tail,data);
         return;
     }
 
@@ -85,14 +87,14 @@ int main(){
     Node *tail=node1;
     print(head);
     //cout<<getLength(head)<<endl;
-    insertatHead(head,11);
+    insertatHead(head,tail,11);
     print(head);
 
     //cout<<getLength(head)<<endl;
-    insertatTail(tail,14);
+    insertatTail(head,tail,14);
     print(head);
 
-    insertatTail(tail,18);
+    insertatTail(head,tail,18);
     print(head);
 
     insertatPosition(tail,head,4,20);
