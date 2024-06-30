@@ -37,13 +37,26 @@ void insertatHead(Node* &head,int data){
     head->prev=temp;
     head=temp;
 }
-
+void insertatTail(Node* &tail,int data){
+    Node *temp=new Node(data);
+    tail->next=temp;
+    temp->prev=tail;
+    tail=temp;
+}
 int main(){
     Node *node1=new Node(10);
     Node *head=node1;
+    Node *tail=node1;
     print(head);
     //cout<<getLength(head)<<endl;
     insertatHead(head,11);
     print(head);
+
     //cout<<getLength(head)<<endl;
+    insertatTail(tail,14);
+    print(head);
+
+    insertatTail(tail,18);
+    print(head);
+    
 }
