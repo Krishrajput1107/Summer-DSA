@@ -138,7 +138,9 @@ int main(){
     insertatPosition(tail,head,4,20);
     print(head);
 
-    deleteNode(3,head);
+    deleteNode(5,head);
     print(head);
+    cout<<"head "<<head->data<<endl;
+    cout<<"tail "<<tail->data<<endl;
     
 }
