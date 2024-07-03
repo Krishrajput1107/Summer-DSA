@@ -123,6 +123,30 @@ Node* floydDetectionloop(Node* &head){
     }
     return NULL;
 }
+Node *detectStartingpoint(Node* &head){
+    if(head==NULL){
+        return NULL;
+    }
+    Node *intersection=floydDetectionloop(head);
+    Node *slow=head;
+    while(slow!=intersection){
+        slow=slow->next;
+        intersection=intersection->next;
+    }
+    return slow;
+}
+
+void removeLoop(Node* &head){
+    if(head==NULL){
+        return;
+    }
+    Node *starting=detectStartingpoint(head);
+    Node *temp=starting;
+    while(temp->next!=starting){
+        temp=temp->next;
+    }
+    temp->next=NULL;
+}
 
 int main(){
     //created a new node
@@ -153,6 +177,10 @@ int main(){
     else{
         cout<<"It is Cyclic"<<endl;
     }
+    Node *start=detectStartingpoint(head);
+    cout<<"Starting point is "<<start->data<<endl;
 
+    removeLoop(head);
+    print(head);
     
 }
