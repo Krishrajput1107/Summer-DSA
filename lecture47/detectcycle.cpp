@@ -104,6 +104,25 @@ bool detectCycle(Node* &head){
     }
     return false;
 }
+Node* floydDetectionloop(Node* &head){
+    if(head==NULL){
+        return NULL;
+    }
+    Node *slow=head;
+    Node *fast=head;
+    while((slow!=NULL)&&(fast!=NULL)){
+        fast=fast->next;
+        if(fast!=NULL){
+            fast=fast->next;
+        }
+        slow=slow->next;
+        if(slow==fast){
+            cout<<"Present at: "<<slow->data<<endl;
+            return slow;
+        }
+    }
+    return NULL;
+}
 
 int main(){
     //created a new node
@@ -128,12 +147,11 @@ int main(){
     //cout<<tail->data<<" ";
 
     tail->next=head->next;
-    bool ans=detectCycle(head);
-    if(ans){
-        cout<<"It is Cyclic"<<endl;
+    if(floydDetectionloop==NULL){
+        cout<<"It is not Cyclic"<<endl;
     }
     else{
-        cout<<"Not Cyclic"<<endl;
+        cout<<"It is Cyclic"<<endl;
     }
 
     
