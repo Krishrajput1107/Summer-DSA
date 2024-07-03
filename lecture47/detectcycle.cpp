@@ -96,6 +96,7 @@ bool detectCycle(Node* &head){
     map<Node*,bool> visited;
     while(temp!=NULL){
         if(visited[temp]==true){
+            cout<<"Cycle present on element: "<<temp->data<<endl;
             return true;
         }
         visited[temp]=true;
