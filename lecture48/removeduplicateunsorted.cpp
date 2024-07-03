@@ -91,22 +91,28 @@ void deleteNode(int position, Node* &head){
     }
 }
 
-Node* deleteDuplicate(Node* &head){
+Node* deleteDuplicateUn(Node* &head){
     if(head==NULL){
         return NULL;
     }
     Node *curr=head;
     while(curr!=NULL){
-        if((curr->next!=NULL)&&(curr->data)==(curr->next->data)){
-            Node *next_next=curr->next->next;
-            Node *nodetodelete=curr->next;
-            nodetodelete->next=NULL;
-            delete nodetodelete; 
-            curr->next=next_next;
+        Node* temp=curr->next;
+        Node *prev=curr;
+        while(temp!=NULL){
+            if(temp->data==curr->data){
+                prev->next=temp->next;
+                Node *nodetodelete=temp;
+                temp=temp->next;
+                nodetodelete->next=NULL;
+                delete(nodetodelete);
+            }
+            else{
+                prev=prev->next;
+                temp=temp->next;  
+            }
         }
-        else{
-            curr=curr->next;
-        }
+        curr=curr->next;
     }
     return head;
 }
@@ -114,7 +120,7 @@ Node* deleteDuplicate(Node* &head){
 
 int main(){
     //created a new node
-    Node *node1=new Node(1);
+    Node *node1=new Node(4);
     //cout<<node1->data<<endl;
     //cout<<node1->next<<endl;
 
@@ -125,29 +131,28 @@ int main(){
     InsertatTail(tail,2);
     print(head);
 
-    InsertatTail(tail,2);
-    print(head);
-
-    InsertatTail(tail,3);
-    print(head);
-
-    InsertatTail(tail,3);
-    print(head);
-
-    InsertatTail(tail,3);
-    print(head);
-
-    InsertatTail(tail,3);
+    InsertatTail(tail,5);
     print(head);
 
     InsertatTail(tail,4);
     print(head);
 
-    deleteDuplicate(head);
+    InsertatTail(tail,2);
+    print(head);
+
+    InsertatTail(tail,2);
     print(head);
 
 
+    InsertatTail(tail,3);
+    print(head);
 
+    InsertatTail(tail,3);
+    print(head);
+
+
+    deleteDuplicateUn(head);
+    print(head);
 
     
 }
