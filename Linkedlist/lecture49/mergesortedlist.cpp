@@ -96,6 +96,12 @@ Node* solve(Node* &first,Node* &second){
     Node* curr2=second;
     Node* next2=curr2->next;
 
+    //if only one element is present in first list
+    if(first->next==NULL){
+        first->next=second;
+        return first;
+    }
+
     while(next1!=NULL && curr2!=NULL){
         if((curr2->data>=curr1->data)&&(curr2->data<=next1->data)){
 
