@@ -1,0 +1,163 @@
+#include<iostream>
+#include<map>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node *next;
+    Node *random;
+
+    //constructor
+    Node(int data){
+        this->data=data;
+        this->next=NULL;
+        this->random=NULL;
+    }
+
+    //distructor
+    ~Node(){
+        int value=this->data;
+        //MEMORY FREE
+        if(this->next!=NULL){
+            delete next;
+            this->next=NULL;
+        }
+        cout<<"memory is free for node with data "<<value<<endl;
+    }
+};
+void InsertatHead(Node* &head,int d){
+    Node *temp=new Node(d);
+    temp->next=head;
+    head=temp;
+
+}
+void InsertatTail(Node* &tail, int d){
+    Node *temp=new Node(d);
+    tail->next=temp;
+    tail=temp;
+
+}
+void print(Node* &head){
+    Node *temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+void InsertAtposition(Node* &tail,Node * &head,int position,int d){
+    //insert at startposition
+    if(position==1){
+        InsertatHead(head,d);
+        return;
+    }
+    int cnt=1;
+    Node *temp=head;
+    while(cnt<position-1){
+        temp=temp->next;
+        cnt++;
+    }
+    //Insert at last position
+    if(temp->next==NULL){
+        InsertatTail(tail,d);
+        return;
+    }
+
+    //Insert at any position
+    Node *nodetoInsert=new Node(d);
+    nodetoInsert->next=temp->next;
+    temp->next=nodetoInsert;
+}
+
+void deleteNode(int position, Node* &head){
+    //delteing first node
+    if(position==1){
+        Node *temp=head;
+        head=head->next;
+        //memory free krdo
+        temp->next=NULL;
+        delete temp;
+    }
+    //deleting any mid or last node
+    else{
+        Node *current=head;
+        Node *prev=NULL;
+        int cnt=1;
+        while(cnt<position){
+            prev=current;
+            current=current->next;
+            cnt++;
+        }
+        prev->next=current->next;
+        current->next=NULL;
+        delete current;
+    }
+}
+void insertATTail(Node* &head,Node* &tail,int d){
+    Node *newNode=new Node(d);
+    if(head==NULL){
+        head=newNode;
+        tail=newNode;
+        return;
+    }
+    else{
+        tail->next=newNode;
+        tail=newNode;
+    }
+
+}
+Node* copyList(Node* &head){
+    //step 1 create a clone llist;
+    Node *cloneHead=NULL;
+    Node *cloneTail=NULL;
+    Node *temp=head;
+    while(temp!=NULL){
+        insertATTail(cloneHead,cloneTail,temp->data);
+        temp=temp->next;
+    }
+
+    //step2 create a map
+    map<Node*,Node*> mapping;
+    Node *originalNode=head;
+    Node *cloneNode=cloneHead;
+    while((originalNode!=NULL)&&(cloneNode!=NULL)){
+        mapping[originalNode]=cloneNode;
+        originalNode=originalNode->next;
+        cloneNode=cloneNode->next;
+    }
+    //step3 arrange random pointers
+    originalNode=head;
+    cloneNode=cloneHead;
+    while(originalNode!=NULL){
+        cloneNode->random=mapping[originalNode->random];
+        originalNode=originalNode->next;
+        cloneNode=cloneNode->next;
+    }
+    return cloneHead;
+
+}
+
+int main(){
+    //created a new node
+    Node *node1=new Node(1);
+    //cout<<node1->data<<endl;
+    //cout<<node1->next<<endl;
+
+    //head pointed to node 1
+    Node *head=node1;
+    Node *tail=node1;
+    InsertatTail(tail,2);
+
+    InsertatTail(tail,3);
+
+    InsertatTail(tail,4);
+
+    InsertatTail(tail,5);
+    print(head);
+
+    copyList(head);
+    print(head);
+
+
+    
+}
