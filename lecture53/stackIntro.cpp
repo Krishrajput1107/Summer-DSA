@@ -6,6 +6,7 @@ int main(){
     stack<int> s;
     s.push(2);
     s.push(3);
+    cout<<"Size of stack is: "<<s.size()<<endl;
     
     s.pop();
 
@@ -17,5 +18,7 @@ int main(){
     else{
         cout<<"Stack is not empty "<<endl;
     }
+
+    cout<<"Size of stack is: "<<s.size()<<endl;
 
 }
