@@ -47,7 +47,6 @@ public:
         }
 
         int ans = arr[front];
-        arr[front] = -1;  // Optional: clear the slot
 
         // Single element case
         if (front == rear) {
