@@ -32,7 +32,6 @@ public:
             return -1;
         } else {
             int ans = arr[front];
-            arr[front] = -1;
             front++;
             if (front == rear) {
                 front = 0;

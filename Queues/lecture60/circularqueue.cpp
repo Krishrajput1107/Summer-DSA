@@ -121,6 +121,9 @@ int main() {
     q.enqueue(60);
     q.enqueue(70);
 
+    // Display front element
+    cout << "Front element: " << q.getFront() << endl;
+
     // Display rear element
     cout << "Rear element: " << q.getRear() << endl;  // Output: 70
 
