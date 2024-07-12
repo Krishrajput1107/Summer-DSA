@@ -15,19 +15,38 @@ public:
         rear = -1;
     }
 
-    void pushfront(int element){
-        
+    void pushfront(int element) {
+        // Queue is full condition
+        if ((front == 0 && rear == size - 1) || (rear == (front - 1) % (size - 1))) {
+            cout << "Queue is full " << endl;
+            return;
+        }
+        // First element to be inserted
+        else if (front == -1) {
+            front = rear = 0;
+            arr[front] = element;
+        }
+        // Front is at the start of the array, wrap around
+        else if (front == 0 && rear != size - 1) {
+            front = size - 1;
+            arr[front] = element;
+        }
+        // Normal case
+        else {
+            front--;
+            arr[front] = element;
+        }
     }
 
-    // push back
+    // Push back
     void pushrear(int element) {
+        // Queue is full condition
         if ((front == 0 && rear == size - 1) || (rear == (front - 1) % (size - 1))) {
             cout << "Queue is full" << endl;
             return;
         }
-
         // First element to be inserted
-        if (front == -1) {
+        else if (front == -1) {
             front = rear = 0;
             arr[rear] = element;
         }
@@ -35,7 +54,7 @@ public:
         else if (rear == size - 1 && front != 0) {
             rear = 0;
             arr[rear] = element;
-        } 
+        }
         // Normal case
         else {
             rear++;
@@ -43,7 +62,7 @@ public:
         }
     }
 
-    // Dequeue operation
+    // Pop front
     int popfront() {
         if (front == -1) {
             cout << "Queue is empty" << endl;
@@ -51,6 +70,7 @@ public:
         }
 
         int ans = arr[front];
+        arr[front] = -1;  // Optional: clear the slot
 
         // Single element case
         if (front == rear) {
@@ -64,6 +84,32 @@ public:
         // Normal case
         else {
             front++;
+        }
+        return ans;
+    }
+
+    // Pop back
+    int poprear() {
+        if (front == -1) {
+            cout << "Queue is empty" << endl;
+            return -1;
+        }
+
+        int ans = arr[rear];
+        arr[rear] = -1;  // Optional: clear the slot
+
+        // Single element case
+        if (front == rear) {
+            front = -1;
+            rear = -1;
+        }
+        // Rear at the start, wrap around
+        else if (rear == 0) {
+            rear = size - 1;
+        }
+        // Normal case
+        else {
+            rear--;
         }
         return ans;
     }
@@ -98,7 +144,7 @@ public:
 };
 
 int main() {
-    DoubleendedQueue q(5);  // Creating a circular queue of size 5
+    DoubleendedQueue q(5);  // Creating a double-ended queue of size 5
 
     // Enqueue elements
     q.pushrear(10);
@@ -106,33 +152,39 @@ int main() {
     q.pushrear(30);
 
     // Trying to enqueue when queue is full
-    q.pushrear(60);
+    q.pushrear(40);
+    q.pushrear(50);
+    q.pushrear(60);  // This should print "Queue is full"
 
-    // Display front element
+    // Display front and rear elements
     cout << "Front element: " << q.getFront() << endl;  // Output: 10
+    cout << "Rear element: " << q.getRear() << endl;    // Output: 50
 
-    // Dequeue elements
-    cout << "Dequeued: " << q.popfront() << endl;  // Output: 10
-    cout << "Dequeued: " << q.popfront() << endl;  // Output: 20
+    // Dequeue elements from front
+    cout << "Dequeued from front: " << q.popfront() << endl;  // Output: 10
+    cout << "Dequeued from front: " << q.popfront() << endl;  // Output: 20
 
     // Display front element again
     cout << "Front element: " << q.getFront() << endl;  // Output: 30
 
     // Enqueue more elements
-    
+    q.pushrear(60);
+    q.pushrear(70);  // This should print "Queue is full"
 
-    // Display front element
-    cout << "Front element: " << q.getFront() << endl;
+    // Display front and rear elements
+    cout << "Front element: " << q.getFront() << endl;  // Output: 30
+    cout << "Rear element: " << q.getRear() << endl;    // Output: 60
 
-    // Display rear element
-    cout << "Rear element: " << q.getRear() << endl;  // Output: 70
+    // Dequeue elements from rear
+    cout << "Dequeued from rear: " << q.poprear() << endl;  // Output: 60
+    cout << "Dequeued from rear: " << q.poprear() << endl;  // Output: 50
 
     // Check if the queue is empty
     cout << "Is the queue empty? " << (q.isEmpty() ? "Yes" : "No") << endl;  // Output: No
 
     // Dequeue all elements
     while (!q.isEmpty()) {
-        cout << "Dequeued: " << q.popfront() << endl;
+        cout << "Dequeued from front: " << q.popfront() << endl;
     }
 
     // Check if the queue is empty again
