@@ -9,7 +9,7 @@ public:
     int size;
 
     Queue() {
-        size = 100001;
+        size = 100;
         arr = new int[size];
         front = 0;
         rear = 0;
