@@ -103,7 +103,7 @@ int main() {
     Hero temp(22,'B');
     temp.print();
 
-    return 0;
+    
 
     
 }
