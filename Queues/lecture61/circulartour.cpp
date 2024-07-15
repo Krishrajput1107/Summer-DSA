@@ -8,8 +8,6 @@ struct petrolPump
     int distance;
 };
 
-
-/*You are required to complete this method*/
 class Solution{
   public:
   
