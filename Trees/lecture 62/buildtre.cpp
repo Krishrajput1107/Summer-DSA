@@ -22,15 +22,27 @@ void levelwise(Node* &root){
     }
     queue<Node*> q;
     q.push(root);
+    q.push(NULL);
     while(!q.empty()){
         Node* temp=q.front();
-        cout<<temp->data<<" ";
         q.pop();
-        if (temp->left) {
-            q.push(temp->left);
+        if(temp==NULL){
+            //purana level complete traverse hoo chuka hai
+            cout<<endl;
+            if(!q.empty()){
+                //queue still has some child nodes
+                q.push(NULL);
+            }
         }
-        if (temp->right) {
-            q.push(temp->right);
+        else{
+            cout<<temp->data<<" ";
+            if (temp->left) {
+            q.push(temp->left);
+            }
+            if (temp->right) {
+                q.push(temp->right);
+            }
+
         }
     }
 
@@ -61,6 +73,7 @@ Node* buildtree(Node* &root){
 
 int main(){
     Node *root=NULL;
+    //1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
     buildtree(root);
 
     cout<<"Priniting level order traversal: "<<endl;
