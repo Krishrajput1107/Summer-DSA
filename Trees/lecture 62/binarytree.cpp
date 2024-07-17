@@ -39,17 +39,29 @@ void levelOrderTraversal(node* &root) {
 
     queue<node*> q;
     q.push(root);
+    q.push(NULL);
 
     while (!q.empty()) {
         node *temp = q.front();
-        cout << temp->data << " ";
         q.pop();
 
-        if (temp->left) {
-            q.push(temp->left);
+        if(temp==NULL){
+            //purana level complete traverse hoo chuka hai
+            cout<<endl;
+            if(!q.empty()){
+                //queue still has some child nodes
+                q.push(NULL);
+            }
         }
-        if (temp->right) {
-            q.push(temp->right);
+        else{
+            cout<<temp->data<<" ";
+            if (temp->left) {
+            q.push(temp->left);
+            }
+            if (temp->right) {
+                q.push(temp->right);
+            }
+
         }
     }
 }
@@ -61,6 +73,7 @@ int main(){
     node* root=NULL;
     //cfreate a tree
     root=buildtree(root);
+    //1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
 
     cout<<"Printing level order traversal: "<<endl;
     levelOrderTraversal(root);
