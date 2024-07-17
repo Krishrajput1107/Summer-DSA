@@ -1,5 +1,6 @@
 #include<iostream>
 #include<queue>
+#include<stack>
 using namespace std;
 
 class Node{
@@ -45,7 +46,38 @@ void levelwise(Node* &root){
 
         }
     }
+}
 
+void reverseLevelwise(Node* root) {
+    if (root == NULL) {
+        return;
+    }
+    
+    queue<Node*> q;
+    stack<Node*> s;
+    q.push(root);
+
+    while (!q.empty()) {
+        Node* temp = q.front();
+        q.pop();
+        s.push(temp);
+
+        // Note that right child is enqueued before left child
+        if (temp->right) {
+            q.push(temp->right);
+        }
+        if (temp->left) {
+            q.push(temp->left);
+        }
+    }
+
+    // Now print all nodes in stack
+    while (!s.empty()) {
+        Node* temp = s.top();
+        cout << temp->data << " ";
+        s.pop();
+    }
+    cout << endl;
 }
 
 Node* buildtree(Node* &root){
@@ -78,5 +110,8 @@ int main(){
 
     cout<<"Priniting level order traversal: "<<endl;
     levelwise(root);
+
+    cout<<"Printing reverse: "<<endl;
+    reverseLevelwise(root);
 
 }

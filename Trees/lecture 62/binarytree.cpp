@@ -68,7 +68,6 @@ void levelOrderTraversal(node* &root) {
 
 
 
-
 int main(){
     node* root=NULL;
     //cfreate a tree
