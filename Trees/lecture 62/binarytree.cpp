@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 
 class node{
@@ -31,12 +32,38 @@ node* buildtree(node* root){
     return root;
 }
 
+void levelOrderTraversal(node *root) {
+    if (root == NULL) {
+        return;
+    }
+
+    queue<node*> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        node *temp = q.front();
+        cout << temp->data << " ";
+        q.pop();
+
+        if (temp->left) {
+            q.push(temp->left);
+        }
+        if (temp->right) {
+            q.push(temp->right);
+        }
+    }
+}
+
+
 
 
 int main(){
     node* root=NULL;
     //cfreate a tree
     root=buildtree(root);
-    
+
+    cout<<"Printing level order traversal: "<<endl;
+    levelOrderTraversal(root);
+
 
 }
