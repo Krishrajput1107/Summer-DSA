@@ -15,15 +15,15 @@ class node{
     }
 };
 
-node* buildtree(node* root){
+node* buildtree(node* &root){
 
     cout<<"Enter the data: "<<endl;
     int data;
     cin>>data;
-    root=new node(data);
     if(data==-1){
         return NULL;
     }
+    root=new node(data);
     cout<<"Enter data for inserting in left of: "<<data<<endl;
     buildtree(root->left);
 
@@ -32,7 +32,7 @@ node* buildtree(node* root){
     return root;
 }
 
-void levelOrderTraversal(node *root) {
+void levelOrderTraversal(node* &root) {
     if (root == NULL) {
         return;
     }
