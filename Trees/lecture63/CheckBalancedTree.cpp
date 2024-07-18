@@ -45,26 +45,59 @@ int height(Node* root){
     return ans;
 }
 
+pair<bool,int> balancedTreeFast(Node* root){
+    if(root==NULL){
+        pair<bool,int> p=make_pair(true,0);
+        return p;
+    }
+
+    pair<bool,int> left=balancedTreeFast(root->left);
+    pair<bool,int> right=balancedTreeFast(root->right);
+
+    bool leftAns=left.first;
+    bool rightAns=right.first;
+
+    bool diff=abs(left.second-right.second)<=1;
+
+    pair<bool,int> ans;
+    ans.second=max(left.second,right.second)+1;
+    if(leftAns && rightAns && diff){
+        ans.first=true;
+    }
+    else{
+        ans.first= false;
+    }
+    return ans;
+}
 
 bool balancedTree(Node* root){
     if(root==NULL){
         return true;
     }
-    bool left=root->left;
-    bool right=root->right;
+    bool left=balancedTree(root->left);
+    bool right=balancedTree(root->right);
 
     bool diff=abs(height(root->left)-height(root->right))<=1;
 
     if(left && right && diff){
         return true;
     }
+    else{
+        return false;
+    }
 }
 
 int main() {
     Node* root = NULL;
     // Example input: 1 3 5 -1 -1 7 -1 -1 11 -1 -1 17 -1 -1
-    buildtree(root);
-    cout << "Tree is: " << balancedTree(root) << endl;
+    root = buildtree(root);
+
+    pair<bool, int> result = balancedTreeFast(root);
+    if (result.first) {
+        cout << "The tree is balanced." << endl;
+    } else {
+        cout << "The tree is not balanced." << endl;
+    }
 
     return 0;
 }
