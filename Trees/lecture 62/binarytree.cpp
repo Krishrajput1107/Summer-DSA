@@ -118,10 +118,38 @@ void postOrder(Node* root){
     cout<<root->data<<" ";
 }
 
+void buildfromLevelOrder(Node* &root){
+    queue<Node*> q;
+    int data;
+    cout<<"Enter data: "<<endl;
+    cin>>data;
+    root=new Node(data);
+    q.push(root);
+    while(!q.empty()){
+        Node *temp=q.front();
+        q.pop();
+        cout<<"Enter left node for "<<temp->data<<endl;
+        int leftdata;
+        cin>>leftdata;
+        if(leftdata!=-1){
+            temp->left=new Node(leftdata);
+            q.push(temp->left);
+        }
 
+        cout<<"Enter right node for "<<temp->data<<endl;
+        int rightdata;
+        cin>>rightdata;
+        if(rightdata!=-1){
+            temp->right=new Node(rightdata);
+            q.push(temp->right);
+        }
+    }
+}
 
 int main() {
     Node* root = NULL;
+    buildfromLevelOrder(root);
+    /*
     root = buildtree(root);
     // Example input: 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
 
@@ -144,4 +172,5 @@ int main() {
     postOrder(root);
 
     return 0;
+    */
 }
