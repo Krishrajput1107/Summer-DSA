@@ -1,107 +1,68 @@
 #include<iostream>
-#include<queue>
 #include<stack>
+#include<queue>
 using namespace std;
 
-class node{
+class Node{
     public:
     int data;
-    node *left;
-    node *right;
+    Node* left;
+    Node* right;
 
-    node(int data){
+    Node(int data){
         this->data=data;
         this->left=NULL;
         this->right=NULL;
     }
 };
 
-node* buildtree(node* &root){
-
-    cout<<"Enter the data: "<<endl;
+Node* buildtree(Node* root){
     int data;
+    cout<<"Enter the data: "<<endl;
     cin>>data;
+    root=new Node(data);
+
     if(data==-1){
         return NULL;
     }
-    root=new node(data);
-    cout<<"Enter data for inserting in left of: "<<data<<endl;
+    cout<<"Enter the data in left of "<<data<<endl;
     buildtree(root->left);
 
-    cout<<"Enter data for inserting in right of: "<<data<<endl;
+    cout<<"Enter the data in right of "<<data<<endl;
     buildtree(root->right);
+
     return root;
 }
 
-void levelOrderTraversal(node* &root) {
-    if (root == NULL) {
-        return;
-    }
-
-    queue<node*> q;
+void levelOrderTraversal(Node* root){
+    queue<Node*> q;
     q.push(root);
     q.push(NULL);
-
-    while (!q.empty()) {
-        node *temp = q.front();
-        q.pop();
-
+    while(!q.empty()){
+        Node* temp=q.front();
         if(temp==NULL){
-            //purana level complete traverse hoo chuka hai
             cout<<endl;
             if(!q.empty()){
-                //queue still has some child nodes
                 q.push(NULL);
             }
         }
         else{
             cout<<temp->data<<" ";
-            if (temp->left) {
-            q.push(temp->left);
+            if(temp->left){
+                q.push(temp->left);
             }
-            if (temp->right) {
+            if(temp->right){
                 q.push(temp->right);
             }
-
         }
+
     }
 }
-
-void reverselevelOrderTraversal(node* &root){
-    queue<node*> q;
-    stack<node*> s;
-    q.push(root);
-    while(!q.empty()){
-        node* temp=q.front();
-        s.push(temp);
-        q.pop();
-        if(temp->left){
-            q.push(temp->left);
-        }
-        if(temp->right){
-            q.push(temp->right);
-        }
-    }
-
-    while(!s.empty()){
-        cout<<s.top()->data<<" ";
-        s.pop();
-    }
-}
-
-
 
 int main(){
-    node* root=NULL;
-    //cfreate a tree
-    root=buildtree(root);
-    //1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+    Node* root=NULL;
+    buildtree(root);
 
-    cout<<"Printing level order traversal: "<<endl;
+    cout<<"Printing data in level wise order: "<<endl;
     levelOrderTraversal(root);
-
-    cout<<"reverse of level order: "<<endl;
-    reverselevelOrderTraversal(root);
-
-
 }
