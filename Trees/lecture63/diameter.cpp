@@ -63,7 +63,7 @@ pair<int,int> diameterFast(Node* root) {
 
         return ans;
     }
-    //this
+    
 int diameter(Node* root){
     if(root==NULL){
         return 0;
