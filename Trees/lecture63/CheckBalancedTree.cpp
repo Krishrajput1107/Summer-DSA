@@ -86,7 +86,6 @@ bool balancedTree(Node* root){
         return false;
     }
 }
-
 int main() {
     Node* root = NULL;
     // Example input: 1 3 5 -1 -1 7 -1 -1 11 -1 -1 17 -1 -1
