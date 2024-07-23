@@ -26,14 +26,14 @@ void solve(Node* root, vector<int> &ans, int lvl){
     if(lvl==ans.size()){
         ans.push_back(root->data);
     }
-
-    solve(root->left,ans,lvl+1);
+    
     solve(root->right,ans,lvl+1);
+    solve(root->left,ans,lvl+1);
 
 }
 
 
-vector<int> leftViewOrder(Node *root)
+vector<int> rightViewOrder(Node *root)
     {   
         vector<int> ans;
         solve(root,ans,0);
@@ -69,8 +69,8 @@ int main(){
     //1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
     buildtree(root);
 
-    vector<int>answer=leftViewOrder(root);
-    cout<<"Priniting Vertical order traversal: "<<endl;
+    vector<int>answer=rightViewOrder(root);
+    cout<<"Priniting Right view: "<<endl;
 
     for(int i=0;i<answer.size();i++){
         cout<<answer[i]<<" ";
