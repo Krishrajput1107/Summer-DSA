@@ -36,6 +36,7 @@ Node* solve(int in[],int post[],int &index,int inorderStart,int inorderEnd,int n
     int position=findPosition(in,element,n);
 
     //recursive calls
+    //In case of post order and in order first build right subtreee
     root->right=solve(in,post,index,position+1,inorderEnd,n);
     root->left=solve(in,post,index,inorderStart,position-1,n);
 
