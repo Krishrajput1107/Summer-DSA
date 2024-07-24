@@ -37,42 +37,59 @@ Node* buildtree() {
     return root;
 }
 
-int solve(Node* root, int n, vector<int>path, int k){
+Node* solve(Node* root, int node, int &k){
+
     if(root==NULL){
-        return;
+        return NULL;
+    }
+    if(root->data==node){
+        return root;
     }
 
-    path.push_back(root->data);
+    Node* leftAns=solve(root->left,node,k);
+    Node* rightAns=solve(root->right,node,k);
 
-    solve(root->left,n,path,k);
-    solve(root->right,n,path,k);
-
-    int size=path.size();
-    int sum=0;
-    for(int i=size-1;i>=k;i--){
-            if(i==k){
-                return root->data;
-            }
-            continue;
+    if(leftAns!=NULL && rightAns==NULL){
+        k--;
+        if(k<=0){
+            k=INT16_MAX;
+            return root;
         }
+        return leftAns;
+    }
+
+    if(leftAns==NULL && rightAns!=NULL){
+        k--;
+        if(k<=0){
+            k=INT16_MAX;
+            return root;
+        }
+        return rightAns;
+    }
+
+    return NULL;
+    
 }
 
-int Ksum(Node* root,int n){
-    vector<int> path;
-    int k=2;
-    solve(root, n, path, k);
-
-    return root->data;
+int KthAncestor(Node* root,int node,int k){
+    Node* ans=solve(root,node,k);
+    if(ans==NULL){
+        return -1;
+    }
+    else{
+        return ans->data;
+    }
 }
 
 int main() {
     Node* root = NULL;
-    int k=5;
+    int n=4;
+    int k=2;
     root = buildtree();
 
-    int ans = Ksum(root,k);
+    int ans = KthAncestor(root,n,k);
 
-    cout << "Number of path which have their sum equal to "<< k<<" is: " << ans << endl;
+    cout << "Kth ancestor of "<< n<<" is: " << ans << endl;
 
     return 0;
 }
