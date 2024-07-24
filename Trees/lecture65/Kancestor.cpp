@@ -73,7 +73,7 @@ Node* solve(Node* root, int node, int &k){
 
 int KthAncestor(Node* root,int node,int k){
     Node* ans=solve(root,node,k);
-    if(ans==NULL){
+    if(ans==NULL || ans->data==node){
         return -1;
     }
     else{
