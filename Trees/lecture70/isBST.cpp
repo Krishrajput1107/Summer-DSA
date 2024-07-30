@@ -86,7 +86,7 @@ int main() {
 
     levelwise(root);
 
-    cout<<isBST<<endl;
+    cout<<isBST(root,INT16_MIN,INT16_MAX)<<endl;
 
     return 0;
 }
