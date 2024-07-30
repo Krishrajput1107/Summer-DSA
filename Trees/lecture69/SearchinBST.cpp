@@ -87,6 +87,22 @@ bool Search(Node* root,int X){
     }
 }
 
+bool SearchIterative(Node* root,int X){
+    Node *temp=root;
+    while(temp!=NULL){
+        if(temp->data==X){
+            return true;
+        }
+        if(temp->data > X){
+            temp=temp->left;
+        }
+        else{
+            temp=temp->right;
+        }
+    }
+    return false;
+}
+
 void inorder(Node* root){
     if(root==NULL){
         return;
@@ -112,6 +128,8 @@ int main() {
     levelwise(root);
     cout<<endl;
     inorder(root);
+    cout<<endl;
+    cout<< SearchIterative(root,X);
 
 
     return 0;
