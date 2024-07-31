@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <climits>  // For INT_MIN and INT_MAX
 using namespace std;
 
 class Node {
@@ -9,7 +10,7 @@ public:
     Node* right;
 
     Node(int d) {
-        this->data = d;  // Corrected this line to assign 'd' directly
+        this->data = d;
         this->left = NULL;
         this->right = NULL;
     }
@@ -51,33 +52,37 @@ Node* InsertInBST(Node* root, int data) {
     }
 
     if (data < root->data) {
-        root->left=InsertInBST(root->left, data);
+        root->left = InsertInBST(root->left, data);
     } else {
-        root->right=InsertInBST(root->right, data);
+        root->right = InsertInBST(root->right, data);
     }
-
-    
+    return root;
 }
 
-void takeInput(Node*& root) {  // Modified to take Node*& to modify the original root
+void takeInput(Node*& root) {
     cout << "Enter the data: " << endl;
     int data;
     cin >> data;
     while (data != -1) {
-        root = InsertInBST(root, data);  // Modified to update the original root
+        root = InsertInBST(root, data);
         cin >> data;
     }
 }
 
-bool isBST(Node* root,int min, int max){
-    if(root==NULL){
+bool isBST(Node* root, int min, int max) {
+    if (root == NULL) {
         return true;
     }
-    if(root->data>min && root->data<max){
-        bool left=isBST(root->left,min,root->data);
-        bool right=isBST(root->right,root->data,max);
+    if (root->data > min && root->data < max) {
+        bool left = isBST(root->left, min, root->data);
+        bool right = isBST(root->right, root->data, max);
+        return left && right;  // Both left and right subtrees must be valid BSTs
     }
     return false;
+}
+
+bool validBST(Node* root) {
+    return isBST(root, INT_MIN, INT_MAX);
 }
 
 int main() {
@@ -86,10 +91,9 @@ int main() {
 
     levelwise(root);
 
-    cout<<isBST(root,INT16_MIN,INT16_MAX)<<endl;
+    cout << (validBST(root) ? "The tree is a valid BST" : "The tree is not a valid BST") << endl;
 
     return 0;
 }
 
-// Example input: 10 8 21 7 27 5 4 3 -1
-
+// Example input: 10 7 3 9 5 11 14 18 -1
