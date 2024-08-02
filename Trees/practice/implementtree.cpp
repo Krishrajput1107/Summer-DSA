@@ -1,5 +1,6 @@
 #include<iostream>
 #include<queue>
+#include<stack>
 using namespace std;
 
 class Node{
@@ -42,6 +43,38 @@ void levelorderTraversal(Node* root){
     }
 }
 
+void reverselevelorderTraversal(Node*root){
+    if (root == NULL) {
+        return;
+    }
+
+    queue<Node*> q;
+    stack<Node*> s;
+
+    q.push(root);
+
+    while (!q.empty()) {
+        Node* temp = q.front();
+        q.pop();
+        s.push(temp);
+
+        // Push left before right because we want right to appear before left in reverse order
+        if (temp->right) {
+            q.push(temp->right);
+        }
+        if (temp->left) {
+            q.push(temp->left);
+        }
+    }
+
+    // Output nodes in reverse order
+    while (!s.empty()) {
+        cout << s.top()->data << " ";
+        s.pop();
+    }
+    cout << endl;
+}
+
 Node* buildtree(Node* root){
     int data;
 
@@ -68,6 +101,11 @@ int main(){
     Node* root=NULL;
     root=buildtree(root);
 
-    cout<<"Level order traversal is: "<<enddl;
+    cout<<"Level order traversal is: "<<endl;
     levelorderTraversal(root);
+
+    cout<<"Reverse level order is: "<<endl;
+    reverselevelorderTraversal(root);
+
+    //2 3 4 -1 -1 -1 5 -1 -1
 }
