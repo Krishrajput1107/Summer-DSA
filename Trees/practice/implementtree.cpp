@@ -147,6 +147,17 @@ void buildfromLevelOrder(Node* &root){
     }
 }
 
+void inorder(Node* root,int &cnt){
+    if(root==NULL){
+        return ;
+    }
+    inorder(root->left,cnt);
+    if(root->left==NULL && root->right==NULL){
+        cnt++;
+    }
+    inorder(root->right,cnt);
+
+}
 
 
 
@@ -154,6 +165,9 @@ int main(){
     Node* root=NULL;
     buildfromLevelOrder(root);
     levelorderTraversal(root);
+    int cnt=0;
+    inorder(root,cnt);
+    cout<<"Number of leaf node is: "<< cnt;
     /*
     root=buildtree(root);
 
