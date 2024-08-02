@@ -126,6 +126,28 @@ bool isBalanced(Node* root){
     }
 }
 
+pair<bool,int> isBalancedfast(Node* root){
+    if(root==NULL){
+        pair<bool,int> p=make_pair(true,0);
+        return p;
+    }
+
+    pair<bool,int> left= isBalancedfast(root->left);
+
+    pair<bool,int> right= isBalancedfast(root->right);
+
+    bool leftAns=left.first;
+    bool rightAns=right.first;
+
+    bool diff=abs(left.second-right.second)<=1;
+
+    pair<bool,int> ans;
+    ans.first=leftAns && rightAns && diff;
+    ans.second=max(left.second,right.second)+1;
+
+    return ans;
+    
+}
 
 int main(){
     Node* root=NULL;
@@ -146,6 +168,14 @@ int main(){
     bool b=isBalanced(root);
     if(b){
         cout<<"Tree is balanced"<<endl;
+    }
+    else{
+        cout<<"Tree is not balanced"<<endl;
+    }
+
+    pair<bool,int> c=isBalancedfast(root);
+    if(c.first){
+    cout<<"Tree is balanced"<<endl;
     }
     else{
         cout<<"Tree is not balanced"<<endl;
