@@ -87,6 +87,27 @@ int diameter(Node* root){
     return ans;
 }
 
+pair<int,int> diameterFast(Node* root){
+    if(root==NULL){
+        pair<int,int> p= make_pair(0,0);
+        return p;
+    }
+
+    pair<int,int> left=diameterFast(root->left);
+    pair<int,int> right=diameterFast(root->right);
+
+    int opt1=left.first;
+    int opt2=right.first;
+
+    int opt3=left.second+right.second+1;
+
+    pair<int,int> ans;
+    ans.first=max(max(opt1,opt2),opt3);
+    ans.second=max(left.second,right.second)+1;
+
+    return ans;
+
+}
 
 int main(){
     Node* root=NULL;
@@ -98,8 +119,13 @@ int main(){
 
     cout<<"Height of tree is: "<<ans<<endl;
 
-    int sol=diameter(root);
-    cout<<"Diameter of tree is: "<<sol<<endl;
+    int sol1=diameter(root);
+    cout<<"Diameter of tree is: "<<sol1<<endl;
+
+    pair<int,int> sol2=diameterFast(root);
+    cout<<"Diameter of tree fast is: "<<sol2.first<<endl;
+
+
 
     // 1 2 4 -1 -1 5 -1 -1 3 -1 6 -1 -1
 }
