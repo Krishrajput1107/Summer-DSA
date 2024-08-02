@@ -109,6 +109,24 @@ pair<int,int> diameterFast(Node* root){
 
 }
 
+bool isBalanced(Node* root){
+    if(root==NULL){
+        return true;
+    }
+
+    bool left=isBalanced(root->left);
+    bool right=isBalanced(root->right);
+    bool diff=abs(height(root->left)-height(root->right))<=1;
+
+    if(left && right && diff){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+
 int main(){
     Node* root=NULL;
     root=buildtree(root);
@@ -124,6 +142,15 @@ int main(){
 
     pair<int,int> sol2=diameterFast(root);
     cout<<"Diameter of tree fast is: "<<sol2.first<<endl;
+
+    bool b=isBalanced(root);
+    if(b){
+        cout<<"Tree is balanced"<<endl;
+    }
+    else{
+        cout<<"Tree is not balanced"<<endl;
+    }
+
 
 
 
