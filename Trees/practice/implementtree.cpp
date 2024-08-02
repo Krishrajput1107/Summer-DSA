@@ -120,12 +120,41 @@ Node* buildtree(Node* root){
 
     return root;
 }
+void buildfromLevelOrder(Node* &root){
+    queue<Node*> q;
+    int data;
+    cin>>data;
+    root=new Node(data);
+    q.push(root);
+    while(!q.empty()){
+        Node* temp=q.front();
+        q.pop();
+        cout<<"Enter data in left of "<<temp->data<<endl;
+        int leftdata;
+        cin>>leftdata;
+        if(leftdata!=-1){
+            temp->left=new Node(leftdata);
+            q.push(temp->left);
+        }
+
+        cout<<"Enter data in right of "<<temp->data<<endl;
+        int rightdata;
+        cin>>rightdata;
+        if(rightdata!=-1){
+            temp->right=new Node(rightdata);
+            q.push(temp->right);
+        }
+    }
+}
 
 
 
 
 int main(){
     Node* root=NULL;
+    buildfromLevelOrder(root);
+    levelorderTraversal(root);
+    /*
     root=buildtree(root);
 
     cout<<"Level order traversal is: "<<endl;
@@ -146,4 +175,5 @@ int main(){
     postorder(root);
 
     //2 3 4 -1 -1 -1 5 -1 -1
+    */
 }
