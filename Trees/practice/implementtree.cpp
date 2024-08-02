@@ -75,6 +75,33 @@ void reverselevelorderTraversal(Node*root){
     cout << endl;
 }
 
+void preorder(Node* root){
+    if(root==NULL){
+        return;
+    }
+    cout<<root->data<<" ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+void inorder(Node* root){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+
+void postorder(Node* root){
+    if(root==NULL){
+        return;
+    }
+    postorder(root->left);
+    postorder(root->right);
+    cout<<root->data<<" ";
+}
+
 Node* buildtree(Node* root){
     int data;
 
@@ -106,6 +133,17 @@ int main(){
 
     cout<<"Reverse level order is: "<<endl;
     reverselevelorderTraversal(root);
+
+    cout<<"Preorder: "<<endl;
+    preorder(root);
+    cout<<endl;
+
+    cout<<"Inorder: "<<endl;
+    inorder(root);
+    cout<<endl;
+
+    cout<<"Postorder: "<<endl;
+    postorder(root);
 
     //2 3 4 -1 -1 -1 5 -1 -1
 }
