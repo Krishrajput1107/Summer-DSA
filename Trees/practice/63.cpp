@@ -149,6 +149,27 @@ pair<bool,int> isBalancedfast(Node* root){
     
 }
 
+bool Identical(Node* root1,Node* root2){
+    if(root1 == NULL && root2 ==NULL){
+        return true;
+    }
+    if(root1 != NULL && root2 ==NULL){
+        return false;
+    }
+    if(root1 == NULL && root2 !=NULL){
+        return false;
+    }
+    bool left=Identical(root1->left,root2->left);
+    bool right=Identical(root1->right,root2->right);
+
+    bool val=root1->data == root2->data;
+    bool ans=left && right && val;
+    return ans;
+}
+
+d
+
+
 int main(){
     Node* root=NULL;
     root=buildtree(root);
