@@ -167,7 +167,35 @@ bool Identical(Node* root1,Node* root2){
     return ans;
 }
 
-d
+pair<bool,int> isSum(Node* root){
+    if(root==NULL){
+        pair<bool,int> p=make_pair(false,0);
+        return p;
+    }
+
+    if(root->left==NULL&& root->right==NULL){
+        pair<bool,int> p=make_pair(false,root->data);
+        return p;
+    }
+    pair<bool,int> left=isSum(root->left);
+    pair<bool,int> right=isSum(root->right);
+
+    bool leftAns=left.first;
+    bool rightAns=right.first;
+    
+    bool condn=left.second + right.second == root->data;
+
+    pair<bool,int> ans;
+    if(leftAns && rightAns && condn){
+        ans.first=true;
+        ans.second=left.second+right.second+root->data;
+    }
+    else{
+        ans.first=false;
+    }
+    return ans;
+
+}
 
 
 int main(){
@@ -201,6 +229,9 @@ int main(){
     else{
         cout<<"Tree is not balanced"<<endl;
     }
+
+    pair<bool,int> at=isSum(root);
+    cout<<at.first<<endl;
 
 
 
