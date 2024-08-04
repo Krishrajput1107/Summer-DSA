@@ -18,8 +18,6 @@ class Node{
 
 };
 
-
-
 vector<int> verticalOrder(Node *root)
     {
         map<int, map<int,vector<int> > > nodes;
@@ -59,7 +57,6 @@ vector<int> verticalOrder(Node *root)
         }
         return ans;
     }
-
 
 Node* buildtree(Node* &root){
     int data;
