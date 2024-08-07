@@ -48,7 +48,6 @@ void FlattenTree(Node* root){
         }
         curr=curr->right;
     }
-    
 }
 
 void PrintFlattenedTree(Node* root) {
