@@ -77,4 +77,7 @@ int main(){
     h.insert(54);
     h.print();
 
+    h.deletefromHeap();
+    h.print();
+
 }
