@@ -7,7 +7,10 @@ int main(){
     cin>>n;
     while(n>0){
         bit=n&1;
-        ans=(pow(10,i)*bit)+ans;
+        if(bit==1){
+            ans=pow(10,i)+ans;
+        }
+        //ans=(pow(10,i)*bit)+ans;
         n=n>>1;
         i++;
     }
